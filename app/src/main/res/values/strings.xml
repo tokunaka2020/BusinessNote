@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">業務記録</string>
+    <string name="tv_msg">メールアドレスでログインする。</string>
+    <string name="tv_mail_title">メールアドレス</string>
+    <string name="tv_password_title">パスワード</string>
+    <string name="tv_content_title">本文</string>
+    <string name="tv_login_title">Googleでログインする。</string>
+
+    <string name="et_mail_hint">メールアドレスを入力</string>
+    <string name="et_password_hint">パスワードを入力</string>
+    <string name="et_title_hint">タイトル</string>
+
+    <string name="bt_login">ログイン</string>
+    <string name="bt_logout">ログアウト</string>
+    <string name="bt_add">追加</string>
+    <string name="bt_save">保存</string>
+    <string name="bt_new_account">アカウントの作成</string>
+    <string name="bt_mail_login">メールアドレスでログイン・登録する</string>
+</resources>
