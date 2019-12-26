@@ -55,5 +55,7 @@ class LoginActivity : AppCompatActivity() {
     // メールアドレス ログイン
     fun loginEmail(){
         Toast.makeText(applicationContext,"Email SignIn",Toast.LENGTH_SHORT).show()
+
+        // 変更したよ
     }
 }
