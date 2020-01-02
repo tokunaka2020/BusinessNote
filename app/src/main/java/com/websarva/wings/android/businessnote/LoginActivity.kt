@@ -48,6 +48,9 @@ class LoginActivity : AppCompatActivity() {
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
+
+            // テスト修正
+            
     }
 
     // メールアドレス ログイン
