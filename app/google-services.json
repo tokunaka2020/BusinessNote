@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "894859065390-u17vbrkqsomek20ps1neomkln72utot2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.websarva.wings.android.businessnote",
+            "certificate_hash": "c6a5fab839f5d58064f7ef6c29444558e3c6b9d4"
+          }
+        },
+        {
           "client_id": "894859065390-g8s61voj4g9c56k8oahb8d671ndogqcj.apps.googleusercontent.com",
           "client_type": 3
         }
