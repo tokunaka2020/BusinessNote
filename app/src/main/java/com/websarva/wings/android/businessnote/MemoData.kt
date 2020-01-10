@@ -2,22 +2,22 @@ package com.websarva.wings.android.businessnote
 
 class MemoData {
 
-    constructor(key: String, title: String?, content: String?): this() {
+    private var _title: String? = null
+    private var _content: String? = null
+    private var _firebaseKey: String? = null
+
+    constructor(key: String, title: String?, content: String?) {
         _firebaseKey = key
         _title = title
         _content = content
     }
 
-    var _title: String? = null
-    var _content: String? = null
-    var _firebaseKey: String? = null
-
     fun MemoData() {
 
     }
 
-    fun getFirebaseKey(): String? {
-        return _firebaseKey
+    fun getFirebaseKey(): String {
+        return _firebaseKey!!
     }
 
     fun setFirebaseKey(firebaseKey: String?) {

@@ -1,6 +1,7 @@
 package com.websarva.wings.android.businessnote
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
@@ -9,7 +10,6 @@ import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ListView
-import androidx.annotation.Nullable
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -102,14 +102,15 @@ class ListActivity : AppCompatActivity(), AdapterView.OnItemLongClickListener {
     ): Boolean {
 
         val toDoData: MemoData = mCustomAdapter!!.getItem(position)
+
         uid = user!!.uid
-        Builder(this)
+        AlertDialog.Builder(this)
             .setTitle("Done?")
             .setMessage("この項目を完了しましたか？")
             .setPositiveButton("Yes",
                 DialogInterface.OnClickListener { dialog, which ->
                     // OK button pressed
-                    reference!!.child(MemoData.getFirebaseKey()).removeValue()
+                    reference!!.child(toDoData.getFirebaseKey()).removeValue()
                     //                        mCustomAdapter.remove(toDoData);
                 })
             .setNegativeButton("No", null)
