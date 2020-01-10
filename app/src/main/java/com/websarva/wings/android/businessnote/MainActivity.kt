@@ -35,10 +35,12 @@ class MainActivity : AppCompatActivity() {
     private fun checkEmpty(): Boolean {
         if (TextUtils.isEmpty(emailEditText?.getText())) {
             Log.d("MainActivity", "何も記入されていません")
+            Toast.makeText(this@MainActivity, "メールアドレスが未入力", Toast.LENGTH_SHORT).show()
             return false
         }
         if (TextUtils.isEmpty(passwordEditText?.getText())) {
             Log.d("MainActivity", "何も記入されていません")
+            Toast.makeText(this@MainActivity, "パスワードが未入力", Toast.LENGTH_SHORT).show()
             return false
         }
         return true
@@ -79,8 +81,8 @@ class MainActivity : AppCompatActivity() {
                 } else { // サインインに失敗した場合は、ユーザーにメッセージを表示します。
                     Log.w(TAG, "signInWithEmail:failure", task.exception)
                     val builder: AlertDialog.Builder = AlertDialog.Builder(this@MainActivity)
-                    builder.setMessage(task.exception!!.message)
-                        .setTitle("Error!")
+                    builder.setMessage(R.string.dialog_error_message)
+                        .setTitle("エラー！")
                         .setPositiveButton(android.R.string.ok, null)
                     val dialog: AlertDialog = builder.create()
                     dialog.show()

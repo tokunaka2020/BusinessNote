@@ -4,19 +4,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
-import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.SignInButton
-import com.google.android.gms.common.api.GoogleApiClient
-import com.google.android.gms.common.internal.GoogleApiAvailabilityCache
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.appindexing.Action;
-import com.google.firebase.appindexing.FirebaseUserActions;
-import com.google.firebase.appindexing.Indexable;
-import com.google.firebase.appindexing.builders.Actions;
 
 class LoginActivity : AppCompatActivity() {
 

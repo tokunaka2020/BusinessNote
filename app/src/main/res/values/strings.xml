@@ -16,4 +16,6 @@
     <string name="bt_save">保存</string>
     <string name="bt_new_account">アカウントの作成</string>
     <string name="bt_mail_login">メールアドレスでログイン・登録する</string>
+
+    <string name="dialog_error_message">ログインに失敗しました。</string>
 </resources>
