@@ -45,7 +45,7 @@ class CustomAdapter( context: Context?, layoutResourceId: Int, toDoData: List<Me
         return convertView!!
     }
 
-    fun getToDoDataKey(key: String?): MemoData? {
+    fun getMemoDataKey(key: String?): MemoData? {
         for (toDoData in mCards) {
             if (toDoData.getFirebaseKey().equals(key)) {
                 return toDoData

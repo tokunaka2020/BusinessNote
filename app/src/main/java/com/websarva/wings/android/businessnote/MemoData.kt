@@ -1,16 +1,16 @@
 package com.websarva.wings.android.businessnote
 
-public class MemoData {
+class MemoData {
 
-    var _title: String? = null
-    var _content: String? = null
-    var _firebaseKey: String? = null
-
-    constructor(key: String, title: String?, content: String?) {
+    constructor(key: String, title: String?, content: String?): this() {
         _firebaseKey = key
         _title = title
         _content = content
     }
+
+    var _title: String? = null
+    var _content: String? = null
+    var _firebaseKey: String? = null
 
     fun MemoData() {
 
