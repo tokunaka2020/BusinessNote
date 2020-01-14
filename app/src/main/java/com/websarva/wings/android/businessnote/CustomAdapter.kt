@@ -1,15 +1,15 @@
 package com.websarva.wings.android.businessnote
 
+import android.app.AlertDialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
-import androidx.annotation.Nullable
 
 
-class CustomAdapter( context: Context?, layoutResourceId: Int, toDoData: List<MemoData>): ArrayAdapter<MemoData>(context!!, layoutResourceId, toDoData) {
+class CustomAdapter( context: Context?, layoutResourceId: Int, memoData: List<MemoData>): ArrayAdapter<MemoData>(context!!, layoutResourceId, memoData) {
 
     private val mCards: List<MemoData>
 
@@ -17,38 +17,41 @@ class CustomAdapter( context: Context?, layoutResourceId: Int, toDoData: List<Me
         return mCards.size
     }
 
-    @Nullable
     override fun getItem(position: Int): MemoData {
+
         return mCards[position]
     }
 
     override fun getView(
-        position: Int, @Nullable convertView: View?,
+        position: Int, convertView: View?,
         parent: ViewGroup
     ): View {
-        var convertView = convertView
+        var convert_view = convertView
         val viewHolder: ViewHolder
-        if (convertView != null) {
-            viewHolder = convertView.tag as ViewHolder
+        if (convert_view != null) {
+            viewHolder = convert_view.tag as ViewHolder
         } else {
-            convertView = LayoutInflater.from(context).inflate(R.layout.card_view, null)
+            convert_view = LayoutInflater.from(context).inflate(R.layout.card_view, null)
             viewHolder = ViewHolder()
             viewHolder.titleTextView =
-                convertView.findViewById<View>(R.id.tvListTitle) as TextView
+                convert_view.findViewById<View>(R.id.tvListTitle) as TextView
             viewHolder.contentTextView =
-                convertView.findViewById<View>(R.id.tvListContent) as TextView
-            convertView.tag = viewHolder
+                convert_view.findViewById<View>(R.id.tvListContent) as TextView
+            convert_view.tag = viewHolder
         }
-        val toDoData: MemoData = mCards[position]
-        viewHolder.titleTextView?.setText(toDoData.getTitle())
-        viewHolder.contentTextView?.setText(toDoData.getContent())
-        return convertView!!
+
+        val memoData: MemoData = mCards[position]
+
+        viewHolder.titleTextView?.setText(memoData.title)
+        viewHolder.contentTextView?.setText(memoData.content)
+
+        return convert_view!!
     }
 
     fun getMemoDataKey(key: String?): MemoData? {
-        for (toDoData in mCards) {
-            if (toDoData.getFirebaseKey().equals(key)) {
-                return toDoData
+        for (memoData in mCards) {
+            if (memoData.firebaseKey.equals(key)) {
+                return memoData
             }
         }
         return null
@@ -60,6 +63,6 @@ class CustomAdapter( context: Context?, layoutResourceId: Int, toDoData: List<Me
     }
 
     init {
-        mCards = toDoData
+        mCards = memoData
     }
 }

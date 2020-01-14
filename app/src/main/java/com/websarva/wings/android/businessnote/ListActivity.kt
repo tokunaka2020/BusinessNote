@@ -1,6 +1,5 @@
 package com.websarva.wings.android.businessnote
 
-import android.app.Activity
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
@@ -10,6 +9,7 @@ import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ListView
+import android.widget.Toast
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -73,7 +73,7 @@ class ListActivity : AppCompatActivity(), AdapterView.OnItemLongClickListener {
                 // リストから削除されるアイテムがないかリッスンします。
                 Log.d("ListActivity", "onChildRemoved:" + dataSnapshot.getKey())
                 val result = dataSnapshot.getValue(MemoData::class.java) ?: return
-                val item = mCustomAdapter!!.getMemoDataKey(result.getFirebaseKey())
+                val item = mCustomAdapter!!.getMemoDataKey(result.firebaseKey)
 
                 mCustomAdapter!!.remove(item)
                 mCustomAdapter!!.notifyDataSetChanged()
@@ -89,7 +89,7 @@ class ListActivity : AppCompatActivity(), AdapterView.OnItemLongClickListener {
         })
     }
 
-    fun onAddRecordButtonClick(v: View?) {
+    fun onAddRecordButtonClick() {
         val intent = Intent(this, AddActivity::class.java)
         startActivity(intent)
     }
@@ -101,24 +101,23 @@ class ListActivity : AppCompatActivity(), AdapterView.OnItemLongClickListener {
         id: Long
     ): Boolean {
 
-        val toDoData: MemoData = mCustomAdapter!!.getItem(position)
-
+        val memoData: MemoData? =  mCustomAdapter!!.getItem(position)
         uid = user!!.uid
+
         AlertDialog.Builder(this)
-            .setTitle("Done?")
-            .setMessage("この項目を完了しましたか？")
-            .setPositiveButton("Yes",
-                DialogInterface.OnClickListener { dialog, which ->
-                    // OK button pressed
-                    reference!!.child(toDoData.getFirebaseKey()).removeValue()
-                    //                        mCustomAdapter.remove(toDoData);
+            .setTitle("確認")
+            .setMessage("このデータを削除しますか？")
+            .setPositiveButton("はい", { dialog, which ->
+                    reference!!.child(memoData!!.firebaseKey!!).removeValue()
                 })
-            .setNegativeButton("No", null)
+            .setNegativeButton("いいえ", null)
             .show()
+
         return false
+
     }
 
-    fun onLogoutButtonClick(v: View?) {
+    fun onLogoutButtonClick() {
         mAuth = FirebaseAuth.getInstance()
         mAuth!!.signOut()
         val intent = Intent(this@ListActivity, LoginActivity::class.java)
