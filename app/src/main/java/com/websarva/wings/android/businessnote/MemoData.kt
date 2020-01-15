@@ -6,10 +6,10 @@ class MemoData {
     var content: String? = null
     var firebaseKey: String? = null
 
-    constructor(prmkey: String?, prmtitle: String?, prmcontent: String?) {
-        firebaseKey = prmkey
-        title = prmtitle
-        content = prmcontent
+    constructor(parameter_key: String?, parameter_title: String?, parameter_content: String?) {
+        firebaseKey = parameter_key
+        title = parameter_title
+        content = parameter_content
     }
 
     constructor() {}

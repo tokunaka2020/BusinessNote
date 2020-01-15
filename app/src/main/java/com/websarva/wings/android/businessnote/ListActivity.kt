@@ -89,8 +89,8 @@ class ListActivity : AppCompatActivity(), AdapterView.OnItemLongClickListener {
         })
     }
 
-    fun onAddRecordButtonClick() {
-        val intent = Intent(this, AddActivity::class.java)
+    fun onAddRecordButtonClick(view: View?) {
+        val intent = Intent(applicationContext, AddActivity::class.java)
         startActivity(intent)
     }
 
@@ -106,10 +106,10 @@ class ListActivity : AppCompatActivity(), AdapterView.OnItemLongClickListener {
 
         AlertDialog.Builder(this)
             .setTitle("確認")
-            .setMessage("このデータを削除しますか？")
+            .setMessage("この行を削除しますか？")
             .setPositiveButton("はい", { dialog, which ->
-                    reference!!.child(memoData!!.firebaseKey!!).removeValue()
-                })
+                reference!!.child(memoData!!.firebaseKey!!).removeValue()
+            })
             .setNegativeButton("いいえ", null)
             .show()
 
@@ -117,11 +117,10 @@ class ListActivity : AppCompatActivity(), AdapterView.OnItemLongClickListener {
 
     }
 
-    fun onLogoutButtonClick() {
+    fun onLogoutButtonClick(view: View?) {
         mAuth = FirebaseAuth.getInstance()
         mAuth!!.signOut()
-        val intent = Intent(this@ListActivity, LoginActivity::class.java)
-        intent.putExtra("check", true)
+        val intent = Intent(this@ListActivity, MainActivity::class.java)
         startActivity(intent)
         finish()
     }

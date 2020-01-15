@@ -1,6 +1,7 @@
 package com.websarva.wings.android.businessnote
 
 import android.os.Bundle
+import android.view.View
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -24,7 +25,7 @@ class AddActivity : AppCompatActivity() {
 
     }
 
-    fun save() {
+    fun save(view: View) {
 
         val title = titleEditText!!.text.toString()
         val content = contentEditText!!.text.toString()

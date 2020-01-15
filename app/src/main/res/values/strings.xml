@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">業務記録</string>
+    <string name="app_name">簡易メモ</string>
     <string name="tv_msg">メールアドレスでログインする。</string>
     <string name="tv_mail_title">メールアドレス</string>
     <string name="tv_password_title">パスワード</string>
