@@ -18,8 +18,9 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="30sp"
-            android:textStyle="bold"/>
+            android:textColor="#0020B3"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -29,6 +30,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal|top"
         android:layout_marginStart="3dp"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="16sp" />
 
 </LinearLayout>

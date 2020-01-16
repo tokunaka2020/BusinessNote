@@ -14,17 +14,18 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:text="@string/tv_msg"
-            android:textSize="20sp"/>
+            android:textSize="20sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
@@ -38,9 +39,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/et_mail_hint"
-                    android:textSize="20sp"
+                    android:inputType="textEmailAddress"
                     android:singleLine="true"
-                    android:inputType="textEmailAddress" />
+                    android:textSize="20sp" />
 
             </LinearLayout>
 
@@ -60,32 +61,52 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/et_password_hint"
-                    android:textSize="20sp"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:textSize="20sp" />
 
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"></LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-
                 <Button
                     android:id="@+id/btLogin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
                     android:layout_weight="1"
                     android:onClick="onLoginButtonClick"
-                    android:text="@string/bt_login" />
+                    android:text="@string/bt_login"
+                    android:textSize="12sp" />
 
                 <Button
                     android:id="@+id/btNewAccount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
                     android:layout_weight="1"
                     android:onClick="onNewAccountButtonClick"
-                    android:text="@string/bt_new_account" />
+                    android:text="@string/bt_new_account"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/btEnd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_weight="1"
+                    android:onClick="onEndButtonClick"
+                    android:text="@string/bt_end"
+                    android:textSize="12sp" />
+
             </LinearLayout>
 
         </LinearLayout>

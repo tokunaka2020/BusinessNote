@@ -65,6 +65,10 @@ class MainActivity : AppCompatActivity() {
         setResult(Activity.RESULT_OK, data)
     }
 
+    fun onEndButtonClick(v: View?) {
+        finish()
+    }
+
     private fun signIn(email: String, password: String) {
         Log.d(TAG, "signIn:$email")
         if (!checkEmpty()) {
@@ -106,7 +110,7 @@ class MainActivity : AppCompatActivity() {
                 } else { // サインインに失敗した場合は、ユーザーにメッセージを表示します。
                     Log.w(TAG, "createUserWithEmail:failure", task.exception)
                     Toast.makeText(
-                        this@MainActivity, "Authentication failed.",
+                        this@MainActivity, "アカウントの作成に失敗しました！",
                         Toast.LENGTH_SHORT
                     ).show()
                 }

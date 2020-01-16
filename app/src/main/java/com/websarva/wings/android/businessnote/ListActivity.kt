@@ -1,28 +1,20 @@
 package com.websarva.wings.android.businessnote
 
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ListView
-import android.widget.Toast
-
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.ChildEventListener
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-
-import java.util.ArrayList
+import com.google.firebase.database.*
+import java.util.*
 
 
-class ListActivity : AppCompatActivity(), AdapterView.OnItemLongClickListener {
+class ListActivity : AppCompatActivity() {
 
     var user: FirebaseUser? = null
     var uid: String? = null
@@ -33,8 +25,14 @@ class ListActivity : AppCompatActivity(), AdapterView.OnItemLongClickListener {
     var mListView: ListView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
+
+    }
+
+    override fun onStart() {
+        super.onStart()
 
         //ログイン情報を取得
         user = FirebaseAuth.getInstance().currentUser
@@ -48,15 +46,18 @@ class ListActivity : AppCompatActivity(), AdapterView.OnItemLongClickListener {
 
         //CustomAdapterをセット
         mCustomAdapter = CustomAdapter(applicationContext, R.layout.card_view, ArrayList<MemoData>())
-        mListView!!.setAdapter(mCustomAdapter)
+        //mListView!!.setAdapter(mCustomAdapter)
+        mListView!!.adapter = mCustomAdapter
 
-        //LongListenerを設定
-        mListView!!.setOnItemLongClickListener(this)
+        //クリックリスナーを設定
+        mListView!!.onItemClickListener = ListItemClickListener()
+        //ロングクリックリスナーを設定
+        mListView!!.onItemLongClickListener = ListItemLongClickListener()
 
         //firebaseと同期するリスナー
         reference!!.addChildEventListener(object : ChildEventListener {
 
-            //            データを読み込むときはイベントリスナーを登録して行う。
+            // データを読み込むときはイベントリスナーを登録して行う。
             override fun onChildAdded(dataSnapshot: DataSnapshot, previousChildName: String?) {
                 // アイテムのリストを取得するか、アイテムのリストへの追加がないかリッスンします。
                 val memoData = dataSnapshot.getValue(MemoData::class.java)
@@ -87,6 +88,7 @@ class ListActivity : AppCompatActivity(), AdapterView.OnItemLongClickListener {
                 // ログを記録するなどError時の処理を記載する。
             }
         })
+
     }
 
     fun onAddRecordButtonClick(view: View?) {
@@ -94,27 +96,30 @@ class ListActivity : AppCompatActivity(), AdapterView.OnItemLongClickListener {
         startActivity(intent)
     }
 
-    override fun onItemLongClick(
-        parent: AdapterView<*>?,
-        view: View?,
-        position: Int,
-        id: Long
-    ): Boolean {
+    private inner class ListItemLongClickListener: AdapterView.OnItemLongClickListener {
 
-        val memoData: MemoData? =  mCustomAdapter!!.getItem(position)
-        uid = user!!.uid
+        override fun onItemLongClick(
+            parent: AdapterView<*>?,
+            view: View?,
+            position: Int,
+            id: Long
+        ): Boolean {
 
-        AlertDialog.Builder(this)
-            .setTitle("確認")
-            .setMessage("この行を削除しますか？")
-            .setPositiveButton("はい", { dialog, which ->
-                reference!!.child(memoData!!.firebaseKey!!).removeValue()
-            })
-            .setNegativeButton("いいえ", null)
-            .show()
+            val memoData: MemoData? =  mCustomAdapter!!.getItem(position)
+            uid = user!!.uid
 
-        return false
+            AlertDialog.Builder(parent!!.context)
+                .setTitle("確認")
+                .setMessage("この行を削除しますか？")
+                .setPositiveButton("はい", { dialog, which ->
+                    reference!!.child(memoData!!.firebaseKey!!).removeValue()
+                })
+                .setNegativeButton("いいえ", null)
+                .show()
 
+            // trueを返すことによってonItemLongClick() のあとに onItemClick() が呼ばれなくなる
+            return true
+        }
     }
 
     fun onLogoutButtonClick(view: View?) {
@@ -124,4 +129,26 @@ class ListActivity : AppCompatActivity(), AdapterView.OnItemLongClickListener {
         startActivity(intent)
         finish()
     }
+
+    private inner class ListItemClickListener: AdapterView.OnItemClickListener {
+
+        override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+            val memoData: MemoData? =  mCustomAdapter!!.getItem(position)
+            uid = user!!.uid
+
+            val title = memoData!!.title
+            val content = memoData.content
+            val firebasekey = memoData.firebaseKey
+
+            val intent = Intent(applicationContext, ModifyActivity::class.java)
+
+            intent.putExtra("parameter_title", title)
+            intent.putExtra("parameter_content", content)
+            intent.putExtra("parameter_firebasekey", firebasekey)
+
+            startActivity(intent)
+        }
+
+    }
+
 }

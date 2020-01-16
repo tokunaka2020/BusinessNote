@@ -14,7 +14,10 @@
     <string name="bt_logout">ログアウト</string>
     <string name="bt_add">追加</string>
     <string name="bt_save">保存</string>
-    <string name="bt_new_account">アカウントの作成</string>
+    <string name="bt_modify">更新</string>
+    <string name="bt_cancel">取消</string>
+    <string name="bt_end">終了</string>
+    <string name="bt_new_account">アカウント作成</string>
     <string name="bt_mail_login">メールアドレスでログイン・登録する</string>
 
     <string name="dialog_error_message">ログインに失敗しました。</string>

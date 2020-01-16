@@ -27,6 +27,7 @@
                 android:id="@+id/btLogout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:onClick="onLogoutButtonClick"
                 android:text="@string/bt_logout" />
 
@@ -34,6 +35,7 @@
                 android:id="@+id/btAddRecord"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:onClick="onAddRecordButtonClick"
                 android:text="@string/bt_add" />
 

@@ -1,6 +1,5 @@
 package com.websarva.wings.android.businessnote
 
-import android.app.AlertDialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -18,7 +17,6 @@ class CustomAdapter( context: Context?, layoutResourceId: Int, memoData: List<Me
     }
 
     override fun getItem(position: Int): MemoData {
-
         return mCards[position]
     }
 
@@ -26,8 +24,10 @@ class CustomAdapter( context: Context?, layoutResourceId: Int, memoData: List<Me
         position: Int, convertView: View?,
         parent: ViewGroup
     ): View {
+
         var convert_view = convertView
         val viewHolder: ViewHolder
+
         if (convert_view != null) {
             viewHolder = convert_view.tag as ViewHolder
         } else {
