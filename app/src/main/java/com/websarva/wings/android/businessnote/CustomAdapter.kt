@@ -12,32 +12,30 @@ class CustomAdapter( context: Context?, layoutResourceId: Int, memoData: List<Me
 
     private val mCards: List<MemoData>
 
+    // 配列のサイズ（要素数）を返す
     override fun getCount(): Int {
         return mCards.size
     }
 
+    // 配列の値を返す
     override fun getItem(position: Int): MemoData {
         return mCards[position]
     }
 
-    override fun getView(
-        position: Int, convertView: View?,
-        parent: ViewGroup
-    ): View {
+    // ビューを返す
+    override fun getView( position: Int, convertView: View?, parent: ViewGroup ): View {
 
-        var convert_view = convertView
+        var view = convertView
         val viewHolder: ViewHolder
 
-        if (convert_view != null) {
-            viewHolder = convert_view.tag as ViewHolder
+        if (view != null) {
+            viewHolder = view.tag as ViewHolder
         } else {
-            convert_view = LayoutInflater.from(context).inflate(R.layout.card_view, null)
+            view = LayoutInflater.from(context).inflate(R.layout.card_view, null)
             viewHolder = ViewHolder()
-            viewHolder.titleTextView =
-                convert_view.findViewById<View>(R.id.tvListTitle) as TextView
-            viewHolder.contentTextView =
-                convert_view.findViewById<View>(R.id.tvListContent) as TextView
-            convert_view.tag = viewHolder
+            viewHolder.titleTextView = view.findViewById<View>(R.id.tvListTitle) as TextView
+            viewHolder.contentTextView = view.findViewById<View>(R.id.tvListContent) as TextView
+            view.tag = viewHolder
         }
 
         val memoData: MemoData = mCards[position]
@@ -45,7 +43,7 @@ class CustomAdapter( context: Context?, layoutResourceId: Int, memoData: List<Me
         viewHolder.titleTextView?.setText(memoData.title)
         viewHolder.contentTextView?.setText(memoData.content)
 
-        return convert_view!!
+        return view!!
     }
 
     fun getMemoDataKey(key: String?): MemoData? {
